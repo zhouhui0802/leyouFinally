@@ -1,5 +1,6 @@
 package com.leyou.consumerdemo.service.impl;
 
+import com.leyou.consumerdemo.feign.UserFeignClient;
 import com.leyou.consumerdemo.mapper.UserDao;
 import com.leyou.consumerdemo.pojo.User;
 //import com.leyou.consumerdemo.service.UserService;
@@ -147,6 +148,19 @@ public class UserServiceImpl /*implements UserService*/ {
             //System.out.println(this.userDao.queryUserById(id));
             users.add(this.userDao.queryUserByIdHystrix(id));
         }
+        return users;
+    }
+
+    //第四种方法  通过feign的方式去访问
+    @Autowired
+    private UserFeignClient userFeignClient;
+
+    public List<User> queryUserByIdsByFeign(List<Long> ids) {
+        List<User> users = new ArrayList<>();
+        ids.forEach(id -> {
+            // 我们测试多次查询，
+            users.add(this.userFeignClient.queryUserById(id));
+        });
         return users;
     }
 

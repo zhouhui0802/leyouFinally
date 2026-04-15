@@ -38,4 +38,9 @@ public class UserController {
     public List<User> consumeEurekaLoadbalanceHystrix(@RequestParam("ids") List<Long> ids) throws Exception{
         return this.userService.queryUserByIdsHystrix(ids);
     }
+
+    @GetMapping("/eurekaLoadbalanceHystrixFeign")
+    public List<User> consumeEurekaLoadbalanceHystrixFeign(@RequestParam("ids") List<Long> ids) throws Exception{
+        return this.userService.queryUserByIdsByFeign(ids);
+    }
 }

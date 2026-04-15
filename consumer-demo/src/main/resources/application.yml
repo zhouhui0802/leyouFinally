@@ -52,5 +52,20 @@ hystrix:
           enabled: true  # ✅ 必须开！开启Hystrix超时
         isolation:
           thread:
-            timeoutInMilliseconds: 5000  # ✅ Hystrix超时时间（建议比Ribbon大）
+            timeoutInMilliseconds: 9000  # ✅ Hystrix超时时间（建议比Ribbon大）
+
+feign:
+  hystrix:
+    enabled: true # 开启Feign的熔断功能
+  compression:
+    request:
+      enabled: true # 开启请求压缩
+      mime-types: text/html,application/xml,application/json # 设置压缩的数据类型
+      min-request-size: 2048 # 设置触发压缩的大小下限
+    response:
+      enabled: true # 开启响应压缩
+
+logging:
+  level:
+    com.leyou: debug
 

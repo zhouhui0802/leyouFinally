@@ -23,7 +23,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User queryById(Long id) {
-        System.out.println("use loadbalancer");
+        //System.out.println("use loadbalancer");
         return this.userMapper.selectByPrimaryKey(id);
     }
 
