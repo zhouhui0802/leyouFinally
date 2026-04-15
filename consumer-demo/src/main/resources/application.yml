@@ -3,23 +3,32 @@ server:
 spring:
   application:
     name: consumer # \u5E94\u7528\u540D\u79F0
-  cloud:
-    loadbalancer:
-      retry:
-        enabled: true # \u5F00\u542FSpring Cloud\u7684\u91CD\u8BD5\u529F\u80FD
+#  cloud:
+#    loadbalancer:
+#      retry:
+#        enabled: true # \u5F00\u542FSpring Cloud\u7684\u91CD\u8BD5\u529F\u80FD
+#eureka:
+#  client:
+#    service-url: # EurekaServer\u5730\u5740,\u591A\u4E2A\u5730\u5740\u4EE5','\u9694\u5F00
+#      defaultZone: http://127.0.0.1:10086/eureka,http://127.0.0.1:10087/eureka
+#  instance:
+#    prefer-ip-address: true # \u5F53\u5176\u5B83\u670D\u52A1\u83B7\u53D6\u5730\u5740\u65F6\u63D0\u4F9Bip\u800C\u4E0D\u662Fhostname
+#    ip-address: 127.0.0.1 # \u6307\u5B9A\u81EA\u5DF1\u7684ip\u4FE1\u606F\uFF0C\u4E0D\u6307\u5B9A\u7684\u8BDD\u4F1A\u81EA\u5DF1\u5BFB\u627E
+#    registry-fetch-interval-seconds: 5 # \u62C9\u53D6\u9891\u7387
+##
+#user-service:
+#  ribbon:
+#    ConnectTimeout: 250 # 连接超时时间
+#    ReadTimeout: 1000  # 读取超时时间
+#    OkToRetryOnAllOperations: true # 是否所有请求都允许重试
+#    MaxAutoRetriesNextServer: 1  # 换下一个服务器重试几次
+#    MaxAutoRetries: 1  # 当前服务器重试几次
+
 eureka:
   client:
-    service-url: # EurekaServer\u5730\u5740,\u591A\u4E2A\u5730\u5740\u4EE5','\u9694\u5F00
-      defaultZone: http://127.0.0.1:10086/eureka,http://127.0.0.1:10087/eureka
+    service-url: # EurekaServer地址
+      defaultZone: http://127.0.0.1:10087/eureka
   instance:
-    prefer-ip-address: true # \u5F53\u5176\u5B83\u670D\u52A1\u83B7\u53D6\u5730\u5740\u65F6\u63D0\u4F9Bip\u800C\u4E0D\u662Fhostname
-    ip-address: 127.0.0.1 # \u6307\u5B9A\u81EA\u5DF1\u7684ip\u4FE1\u606F\uFF0C\u4E0D\u6307\u5B9A\u7684\u8BDD\u4F1A\u81EA\u5DF1\u5BFB\u627E
-    registry-fetch-interval-seconds: 5 # \u62C9\u53D6\u9891\u7387
-#
-user-service:
-  ribbon:
-    ConnectTimeout: 250 # 连接超时时间
-    ReadTimeout: 1000  # 读取超时时间
-    OkToRetryOnAllOperations: true # 是否所有请求都允许重试
-    MaxAutoRetriesNextServer: 1  # 换下一个服务器重试几次
-    MaxAutoRetries: 1  # 当前服务器重试几次
+    prefer-ip-address: true # 当其它服务获取地址时提供ip而不是hostname
+    ip-address: 127.0.0.1 # 指定自己的ip信息，不指定的话会自己寻找
+

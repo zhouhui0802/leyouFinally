@@ -46,45 +46,7 @@ public class User {
     // 更新时间
     private Date updated;
 
-    public Long getId() {
-        return id;
-    }
 
-    public String getUserName() {
-        return userName;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public Integer getAge() {
-        return age;
-    }
-
-    public Integer getSex() {
-        return sex;
-    }
-
-    public Date getBirthday() {
-        return birthday;
-    }
-
-    public Date getCreated() {
-        return created;
-    }
-
-    public Date getUpdated() {
-        return updated;
-    }
-
-    public String getNote() {
-        return note;
-    }
 
     // 备注
     private String note;

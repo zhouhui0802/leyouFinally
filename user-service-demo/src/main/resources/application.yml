@@ -24,3 +24,11 @@ mybatis:
 #    # 服务续约
 #    lease-renewal-interval-in-seconds: 5      #心跳
 #    lease-expiration-duration-in-seconds: 10  #过期
+
+eureka:
+  client:
+    service-url: # EurekaServer地址
+      defaultZone: http://127.0.0.1:10087/eureka
+  instance:
+    prefer-ip-address: true # 当调用getHostname获取实例的hostname时，返回ip而不是host名称
+    ip-address: 127.0.0.1 # 指定自己的ip信息，不指定的话会自己寻找   当前这个服务，要把自己的【IP 地址】告诉 Eureka！

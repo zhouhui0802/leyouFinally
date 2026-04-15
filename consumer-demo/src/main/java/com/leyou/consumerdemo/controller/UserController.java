@@ -23,4 +23,9 @@ public class UserController {
     public List<User> consume(@RequestParam("ids") List<Long> ids){
         return this.userService.querUserByIds(ids);
     }
+
+    @GetMapping("/eureka")
+    public List<User> consumeEureka(@RequestParam("ids") List<Long> ids){
+        return this.userService.queryUserByIds(ids);
+    }
 }
