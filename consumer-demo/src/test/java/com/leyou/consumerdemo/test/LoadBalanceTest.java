@@ -8,6 +8,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 /*import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
 import org.springframework.cloud.netflix.ribbon.RibbonLoadBalancerClient;*/
+import org.springframework.cloud.client.ServiceInstance;
+import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
+import org.springframework.cloud.netflix.ribbon.RibbonLoadBalancerClient;
 import org.springframework.test.context.junit4.SpringRunner;
 
 /**
@@ -19,8 +22,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 @SpringBootTest(classes = UserConsumerDemoApplication.class)
 public class LoadBalanceTest {
 
-/*    @Autowired
-    LoadBalancerClient client;
+    @Autowired
+    RibbonLoadBalancerClient client;
 
     @Test
     public void test() {
@@ -28,5 +31,5 @@ public class LoadBalanceTest {
             ServiceInstance instance = this.client.choose("user-service");
             System.out.println(instance.getHost() + ":" + instance.getPort());
         }
-    }*/
+    }
 }

@@ -20,8 +20,13 @@ public class UserController {
     private UserService userService;
 
     @GetMapping("/{id}")
-    public User queryById(@PathVariable("id") Long id){
+    public User queryById(@PathVariable("id") Long id) throws Exception {
         System.out.println("user-service被调用");
-        return this.userService.queryById(id);
+
+        //正常调用
+        //return this.userService.queryById(id);
+
+        //为了演示熔断机制
+        return this.userService.queryByIdSleep(id);
     }
 }

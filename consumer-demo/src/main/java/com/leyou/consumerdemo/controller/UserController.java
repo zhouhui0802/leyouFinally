@@ -28,4 +28,14 @@ public class UserController {
     public List<User> consumeEureka(@RequestParam("ids") List<Long> ids){
         return this.userService.queryUserByIds(ids);
     }
+
+    @GetMapping("/eurekaLoadbalance")
+    public List<User> consumeEurekaLoadbalance(@RequestParam("ids") List<Long> ids){
+        return this.userService.queryUserByIdsLoadbalance(ids);
+    }
+
+    @GetMapping("/eurekaLoadbalanceHystrix")
+    public List<User> consumeEurekaLoadbalanceHystrix(@RequestParam("ids") List<Long> ids) throws Exception{
+        return this.userService.queryUserByIdsHystrix(ids);
+    }
 }
