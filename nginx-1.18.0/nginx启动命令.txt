@@ -1,0 +1,8 @@
+一般来说，从命令行启动
+start nginx
+
+关闭
+nginx -s stop
+
+重启
+nginx -s reload
