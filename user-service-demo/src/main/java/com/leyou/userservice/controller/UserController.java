@@ -24,9 +24,9 @@ public class UserController {
         System.out.println("user-service被调用");
 
         //正常调用
-        //return this.userService.queryById(id);
+        return this.userService.queryById(id);
 
         //为了演示熔断机制
-        return this.userService.queryByIdSleep(id);
+        //return this.userService.queryByIdSleep(id);
     }
 }
