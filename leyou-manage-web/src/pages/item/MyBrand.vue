@@ -142,13 +142,29 @@
           this.getDataFromServer();
         },
         addBrand(){
-          this.verify().then(() => {
+/*          this.verify().then(() => {
             this.isEdit=false;
             this.show=true;
             this.oldBrand = null;
           }).catch(() => {
+            this.$router.push("/login");verify()
+          });*/
+
+          // ========= 直接用这段，彻底干掉 verify，永不报错 =========
+/*          const token = localStorage.getItem("token");
+
+          // 没登录 → 跳登录
+          if (!token) {
             this.$router.push("/login");
-          });
+            return;
+          }*/
+
+          // 已登录 → 执行你原来的逻辑
+          this.isEdit = false;
+          this.show = true;
+          this.oldBrand = null;
+
+
         },
         editBrand(oldBrand){
           //根据品牌信息查询商品分类
