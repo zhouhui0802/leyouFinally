@@ -6,6 +6,7 @@ spring:
 zuul:
   routes:
     user-service: /user-service/** # 这里是映射路径   默认情况下，一切服务的映射路径就是服务名本身。
+  retryable: true
 
 eureka:
   client:
@@ -15,3 +16,17 @@ eureka:
   instance:
     prefer-ip-address: true
     ip-address: 127.0.0.1
+ribbon:
+  ConnectTimeout: 250 # 连接超时时间(ms)
+  ReadTimeout: 2000 # 通信超时时间(ms)
+  OkToRetryOnAllOperations: true # 是否对所有操作重试
+  MaxAutoRetriesNextServer: 2 # 同一服务不同实例的重试次数
+  MaxAutoRetries: 1 # 同一实例的重试次数
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMillisecond: 6000 # 熔断超时时长：6000ms
+

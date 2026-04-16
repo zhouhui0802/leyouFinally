@@ -7,10 +7,15 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="consumer-demo" />
-        <module name="user-service-demo" />
         <module name="eureka-demo" />
+        <module name="ly-api-gateway" />
+        <module name="ly-item-interface" />
+        <module name="consumer-demo" />
+        <module name="ly-registry" />
+        <module name="user-service-demo" />
+        <module name="ly-item-service" />
         <module name="zuul-demo" />
+        <module name="ly-common" />
       </profile>
     </annotationProcessing>
   </component>
@@ -18,6 +23,13 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="consumer-demo" options="-parameters" />
       <module name="eureka-demo" options="-parameters" />
+      <module name="leyou" options="" />
+      <module name="ly-api-gateway" options="-parameters" />
+      <module name="ly-common" options="-parameters" />
+      <module name="ly-item" options="" />
+      <module name="ly-item-interface" options="-parameters" />
+      <module name="ly-item-service" options="-parameters" />
+      <module name="ly-registry" options="-parameters" />
       <module name="user-service-demo" options="-parameters" />
       <module name="zuul-demo" options="-parameters" />
     </option>
