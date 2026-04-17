@@ -15,4 +15,8 @@ import java.util.List;
 public interface CategoryService {
 
     public List<Category> queryCategoryListByParentId(Long pid);
+
+    public List<Category> queryByBrandId(Long bid);
+
+    public List<String> queryNameByIds(List<Long> ids);
 }

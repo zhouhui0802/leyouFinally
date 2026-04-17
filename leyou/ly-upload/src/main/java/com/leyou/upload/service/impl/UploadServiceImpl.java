@@ -1,10 +1,14 @@
 package com.leyou.upload.service.impl;
 
 
+import com.github.tobato.fastdfs.domain.StorePath;
+import com.github.tobato.fastdfs.service.FastFileStorageClient;
 import com.leyou.upload.controller.UploadController;
 import com.leyou.upload.service.UploadService;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -28,6 +32,8 @@ public class UploadServiceImpl implements UploadService {
     // 支持的文件类型
     private static final List<String> suffixes = Arrays.asList("image/png", "image/jpeg");
 
+    @Autowired
+    FastFileStorageClient storageClient;
 
     @Override
     public String upload(MultipartFile file) {
@@ -45,6 +51,7 @@ public class UploadServiceImpl implements UploadService {
                 logger.info("上传失败，文件内容不符合要求");
                 return null;
             }
+/*            //最原始的的方法
             // 2、保存图片
             // 2.1、生成保存目录
             File dir = new File("D:\\heima\\upload");
@@ -57,7 +64,18 @@ public class UploadServiceImpl implements UploadService {
             // 2.3、拼接图片地址
             String url = "http://image.leyou.com/upload/" + file.getOriginalFilename();
 
-            return url;
+            return url;*/
+
+            // 2、将图片上传到FastDFS
+            // 2.1、获取文件后缀名
+            String extension = StringUtils.substringAfterLast(file.getOriginalFilename(), ".");
+            // 2.2、上传
+            StorePath storePath = this.storageClient.uploadFile(
+                    file.getInputStream(), file.getSize(), extension, null);
+            // 2.3、返回完整路径
+            return "http://image.leyou.com/" + storePath.getFullPath();
+
+
         } catch (Exception e) {
             return null;
         }

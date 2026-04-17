@@ -19,4 +19,6 @@ public interface BrandService {
             Integer page, Integer rows, String sortBy, Boolean desc, String key);
 
     public void saveBrand(Brand brand, List<Long> cids);
+
+    public List<Brand> queryBrandByCategory(Long cid);
 }
