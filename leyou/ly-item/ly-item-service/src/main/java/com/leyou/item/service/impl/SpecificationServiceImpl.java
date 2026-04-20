@@ -3,6 +3,7 @@ package com.leyou.item.service.impl;
 
 import com.leyou.item.mapper.SpecParamMapper;
 import com.leyou.item.mapper.SpecificationMapper;
+import com.leyou.item.pojo.SpecGroup;
 import com.leyou.item.pojo.SpecParam;
 import com.leyou.item.pojo.Specification;
 import com.leyou.item.service.SpecificationService;
@@ -38,4 +39,15 @@ public class SpecificationServiceImpl implements SpecificationService {
         param.setGeneric(generic);
         return this.specParamMapper.select(param);
     }
+
+/*    public List<SpecGroup> querySpecsByCid(Long cid) {
+        // 查询规格组
+        List<SpecGroup> groups = this.querySpecGroups(cid);
+        SpecParam param = new SpecParam();
+        groups.forEach(g -> {
+            // 查询组内参数
+            g.setParams(this.querySpecParams(g.getId(), null, null, null));
+        });
+        return groups;
+    }*/
 }

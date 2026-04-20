@@ -21,6 +21,8 @@
     <module>ly-api-gateway</module>
     <module>ly-item</module>
       <module>ly-upload</module>
+      <module>leyou-search</module>
+      <module>leyou-goods-web</module>
   </modules>
 
   <properties>

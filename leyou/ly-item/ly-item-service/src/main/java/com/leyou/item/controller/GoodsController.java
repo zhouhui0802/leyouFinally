@@ -34,15 +34,16 @@ public class GoodsController {
      * @return
      */
     @GetMapping("/spu/page")
-    public ResponseEntity<PageResult<SpuBo>> querySpuByPage(
+    public ResponseEntity<PageResult<SpuBo>> querySpuBoByPage(
             @RequestParam(value = "page", defaultValue = "1") Integer page,
             @RequestParam(value = "rows", defaultValue = "5") Integer rows,
-            @RequestParam(value = "saleable",defaultValue = "1") boolean saleable,
-            @RequestParam(value = "key", required = false) String key) {
+            @RequestParam(value = "key", required = false) String key,
+            @RequestParam(value = "saleable", required = false) Boolean saleable
+    ) {
         // 分页查询spu信息
-        PageResult<SpuBo> result = this.goodsService.querySpuByPageAndSort(page, rows, saleable, key);
+        PageResult<SpuBo> result = this.goodsService.querySpuByPageAndSort(page, rows, key, saleable);
         if (result == null || result.getItems().size() == 0) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(result);
     }
@@ -63,24 +64,9 @@ public class GoodsController {
         }
     }
 
-    @GetMapping("/spu/detail/{id}")
-    public ResponseEntity<SpuDetail> querySpuDetailById(@PathVariable("id") Long id) {
-        SpuDetail detail = this.goodsService.querySpuDetailById(id);
-        if (detail == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        return ResponseEntity.ok(detail);
-    }
 
 
-    @GetMapping("sku/list")
-    public ResponseEntity<List<Sku>> querySkuBySpuId(@RequestParam("id") Long id) {
-        List<Sku> skus = this.goodsService.querySkuBySpuId(id);
-        if (skus == null || skus.size() == 0) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        return ResponseEntity.ok(skus);
-    }
+
 
     /**
      * 新增商品
@@ -97,4 +83,44 @@ public class GoodsController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    /**
+     * 通过spu_id查询SPU详情
+     *
+     * @param spuId
+     * @return
+     */
+    @GetMapping("/spu/detail/{spuId}")
+    public ResponseEntity<SpuDetail> querySpuDetailBySpuId(@PathVariable("spuId") Long spuId) {
+        SpuDetail spuDetail = this.goodsService.querySpuDetailBySpuId(spuId);
+        if (spuDetail == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(spuDetail);
+    }
+
+    @GetMapping("sku/list")
+    public ResponseEntity<List<Sku>> querySkuBySpuId(@RequestParam("id") Long id) {
+        List<Sku> skus = this.goodsService.querySkuBySpuId(id);
+        if (skus == null || skus.size() == 0) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return ResponseEntity.ok(skus);
+    }
+
+    /**
+     * 根据id查询sku
+     * @param id
+     * @return
+     */
+    @GetMapping("/sku/{id}")
+    public ResponseEntity<Sku> querySkuById(@PathVariable("id") Long id){
+        Sku sku = this.goodsService.querySkuById(id);
+        if (sku == null){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+        return ResponseEntity.ok(sku);
+    }
+
+
 }

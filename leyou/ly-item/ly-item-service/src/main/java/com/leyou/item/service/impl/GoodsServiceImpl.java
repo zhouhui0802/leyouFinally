@@ -48,7 +48,10 @@ public class GoodsServiceImpl implements GoodsService {
     @Autowired
     private StockMapper stockMapper;
 
-    public PageResult<SpuBo> querySpuByPageAndSort(Integer page, Integer rows, Boolean saleable, String key) {
+    @Autowired
+    private CategoryMapper categoryMapper;
+
+    public PageResult<SpuBo> querySpuByPageAndSort(Integer page, Integer rows, String key, Boolean saleable) {
         // 1、查询SPU
         // 分页,最多允许查100条
         PageHelper.startPage(page, Math.min(rows, 100));
@@ -170,5 +173,26 @@ public class GoodsServiceImpl implements GoodsService {
         this.spuDetailMapper.updateByPrimaryKeySelective(spu.getSpuDetail());
     }
 
+    /**
+     * 通过spu_id查询SPU详情
+     *
+     * @param spuId
+     * @return
+     */
+    public SpuDetail querySpuDetailBySpuId(Long spuId) {
+        System.out.println(spuId);
+        return this.spuDetailMapper.selectByPrimaryKey(spuId);
+    }
+
+
+    /**
+     * 根据skuId查询sku
+     * @param id
+     * @return
+     */
+    @Override
+    public Sku querySkuById(Long id) {
+        return this.skuMapper.selectByPrimaryKey(id);
+    }
 
 }

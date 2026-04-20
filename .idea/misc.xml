@@ -10,6 +10,7 @@
         <option value="$PROJECT_DIR$/zuul-demo/pom.xml" />
         <option value="$PROJECT_DIR$/leyou/pom.xml" />
         <option value="$PROJECT_DIR$/elasticsearch/pom.xml" />
+        <option value="$PROJECT_DIR$/rabbitmq-demo/pom.xml" />
       </list>
     </option>
   </component>

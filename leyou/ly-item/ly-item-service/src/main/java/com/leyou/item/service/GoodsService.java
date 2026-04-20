@@ -2,9 +2,7 @@ package com.leyou.item.service;
 
 
 import com.leyou.common.pojo.PageResult;
-import com.leyou.item.pojo.Sku;
-import com.leyou.item.pojo.SpuBo;
-import com.leyou.item.pojo.SpuDetail;
+import com.leyou.item.pojo.*;
 
 import java.util.List;
 
@@ -17,7 +15,7 @@ import java.util.List;
 
 public interface GoodsService {
 
-    public PageResult<SpuBo> querySpuByPageAndSort(Integer page, Integer rows, Boolean saleable, String key);
+    public PageResult<SpuBo> querySpuByPageAndSort(Integer page, Integer rows, String key, Boolean saleable);
 
     public void save(SpuBo spu);
 
@@ -26,4 +24,14 @@ public interface GoodsService {
     public List<Sku> querySkuBySpuId(Long spuId);
 
     public void update(SpuBo spu);
+
+    public SpuDetail querySpuDetailBySpuId(Long spuId);
+
+    /**
+     * 查询sku根据id
+     * @param id
+     * @return
+     */
+    Sku querySkuById(Long id);
+
 }

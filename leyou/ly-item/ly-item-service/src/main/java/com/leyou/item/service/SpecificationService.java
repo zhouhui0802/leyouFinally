@@ -1,6 +1,7 @@
 package com.leyou.item.service;
 
 
+import com.leyou.item.pojo.SpecGroup;
 import com.leyou.item.pojo.SpecParam;
 import com.leyou.item.pojo.Specification;
 
@@ -18,4 +19,6 @@ public interface SpecificationService {
     public Specification queryById(Long id);
 
     public List<SpecParam> querySpecParams(Long gid, Long cid, Boolean searching, Boolean generic);
+
+    /*public List<SpecGroup> querySpecsByCid(Long cid);*/
 }

@@ -17,6 +17,7 @@ zuul:
   retryable: true
   routes:
     item-service: /item/** # 将商品微服务映射到/item/**
+    search-service: /search/**
   ignored-services:
     - upload-service # 忽略upload-service服务 不需要对图片上传进行过滤
 ribbon:
@@ -31,4 +32,4 @@ hystrix:
       execution:
         isolation:
           thread:
-            timeoutInMillisecond: 10000 # 熔断超时时长：10000ms
+            timeoutInMillisecond: 60000 # 熔断超时时长：10000ms
