@@ -22,4 +22,8 @@ public interface SearchService {
    /* public SearchResult search(SearchRequest request);*/
 
     public SearchResult search(SearchRequest request);
+
+    public void createIndex(Long id) throws IOException;
+
+    public void deleteIndex(Long id);
 }

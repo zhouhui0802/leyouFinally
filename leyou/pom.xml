@@ -23,6 +23,9 @@
       <module>ly-upload</module>
       <module>leyou-search</module>
       <module>leyou-goods-web</module>
+      <module>leyou-user</module>
+      <module>leyou-sms-service</module>
+    <module>leyou-auth</module>
   </modules>
 
   <properties>

@@ -9,6 +9,10 @@ spring:
       cluster-nodes: 127.0.0.1:9300
   jackson:
     default-property-inclusion: non_null
+  rabbitmq:
+    host: 127.0.0.1
+    username: guest
+    password: guest
 eureka:
   client:
     service-url:

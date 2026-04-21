@@ -1,0 +1,43 @@
+package com.leyou.rabbitmq.work;
+
+
+/**
+ * @author zhouhui
+ * @version 1.0
+ * @description TODO
+ * @date 2026/4/21 7:43
+ */
+
+import com.leyou.rabbitmq.util.ConnectionUtil;
+import com.rabbitmq.client.Channel;
+import com.rabbitmq.client.Connection;
+
+/**
+ * work消息模型-生产者
+ */
+
+public class Send {
+
+    private final static String QUEUE_NAME = "work_queue_test";
+
+    public static void main(String[] argv) throws Exception {
+        // 获取到连接
+        Connection connection = ConnectionUtil.getConnection();
+        // 获取通道
+        Channel channel = connection.createChannel();
+        // 声明队列
+        channel.queueDeclare(QUEUE_NAME, false, false, false, null);
+        // 循环发布任务
+        for (int i = 0; i < 50; i++) {
+            // 消息内容
+            String message = "task .. " + i;
+            channel.basicPublish("", QUEUE_NAME, null, message.getBytes());
+            System.out.println(" [x] Sent '" + message + "'");
+
+            Thread.sleep(i * 2);
+        }
+        // 关闭通道和连接
+        channel.close();
+        connection.close();
+    }
+}

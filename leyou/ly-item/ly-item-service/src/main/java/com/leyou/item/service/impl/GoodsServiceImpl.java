@@ -8,7 +8,9 @@ import com.leyou.item.mapper.*;
 import com.leyou.item.pojo.*;
 import com.leyou.item.service.CategoryService;
 import com.leyou.item.service.GoodsService;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
+import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,6 +30,7 @@ import java.util.stream.Collectors;
  * @date 2026/4/17 9:00
  */
 @Service
+@Slf4j
 public class GoodsServiceImpl implements GoodsService {
 
     @Autowired
@@ -50,6 +53,9 @@ public class GoodsServiceImpl implements GoodsService {
 
     @Autowired
     private CategoryMapper categoryMapper;
+
+    @Autowired
+    private AmqpTemplate amqpTemplate;
 
     public PageResult<SpuBo> querySpuByPageAndSort(Integer page, Integer rows, String key, Boolean saleable) {
         // 1、查询SPU
@@ -103,6 +109,8 @@ public class GoodsServiceImpl implements GoodsService {
 
         // 保存sku和库存信息
         saveSkuAndStock(spu.getSkus(), spu.getId());
+
+        sendMessage(spu.getId(),"insert");
     }
 
     private void saveSkuAndStock(List<Sku> skus, Long spuId) {
@@ -171,6 +179,8 @@ public class GoodsServiceImpl implements GoodsService {
 
         // 更新spu详情
         this.spuDetailMapper.updateByPrimaryKeySelective(spu.getSpuDetail());
+
+        this.sendMessage(spu.getId(),"update");
     }
 
     /**
@@ -193,6 +203,15 @@ public class GoodsServiceImpl implements GoodsService {
     @Override
     public Sku querySkuById(Long id) {
         return this.skuMapper.selectByPrimaryKey(id);
+    }
+
+    private void sendMessage(Long id, String type){
+        // 发送消息
+        try {
+            this.amqpTemplate.convertAndSend("item." + type, id);
+        } catch (Exception e) {
+
+        }
     }
 
 }

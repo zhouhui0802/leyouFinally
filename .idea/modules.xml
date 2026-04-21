@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/leyou-auth-service.iml" filepath="$PROJECT_DIR$/leyou-auth-service.iml" />
       <module fileurl="file://$PROJECT_DIR$/leyouFinally.iml" filepath="$PROJECT_DIR$/leyouFinally.iml" />
       <module fileurl="file://$PROJECT_DIR$/user-service-demo.iml" filepath="$PROJECT_DIR$/user-service-demo.iml" />
     </modules>
